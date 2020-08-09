@@ -1,1 +1,1 @@
-# projectAIle : ML project structure generator.
+<img src='src/logo.png' alt='logo' />
