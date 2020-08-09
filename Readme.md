@@ -1,1 +1,1 @@
-# projectAIle : ML project structure generator.
+# projectAIle : ML project structure.
