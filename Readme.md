@@ -6,7 +6,7 @@ After working on several machine learning projects and facing several difficulti
 Although everyone have their own style of development and their own way of organizing their code, through ProjectAIle, i plan to provide a common checklist or pipeline or workflow which is essentially common in every machine learning project and can be easily modified by anyone or extended upon to customize their workflow.
 
 ### The Directory Structure
-The ProjectAIle architecture contains the following project structure : 
+The ProjectAIle architecture contains the following project structure : <br />
 <img src='src/directory.png' alt='directory' />
 
 
@@ -40,3 +40,8 @@ trainer.evaluate()
 
 pred = model.predict(new_image
 ```
+ProjectAIle will provide extendable classes for the following: <br />
+#### 1. DATA_LOADER : (Implicit, uses the feeder to pass in the batch information, the feeder does the loading and pre-processing etc.)
+#### 2. FEEDER : (Base class for the feeder where you can define the loading process, the pre-process steps and any augmentations)
+#### 3. MODEL : (Base class for the model with all the necessary functions like plotting the model architecture, printing the summary, saving the model weights, loading a model etc.)
+#### 4. TRAINER : (The trainer that trains the model and provides the evaluation loops as well, returns the trained model)
