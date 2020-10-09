@@ -5,9 +5,38 @@ The ProjectAIle provides a common project structure, useful functionality throug
 After working on several machine learning projects and facing several difficulties in going from a raw research and experimentation based development to production based development, i've constantly optimized my workflow and development process as well as the code organization structure and have created techniques and methods that can be utilized to reduce the boiler plate stuff and takes out the hassle of re-writing or modifying several mundane tasks that can slow down the speed of development.
 Although everyone have their own style of development and their own way of organizing their code, through ProjectAIle, i plan to provide a common checklist or pipeline or workflow which is essentially common in every machine learning project and can be easily modified by anyone or extended upon to customize their workflow.
 
-The Directory Structure
+### The Directory Structure
 The ProjectAIle architecture contains the following project structure : 
 <img src='src/directory.png' alt='directory' />
 
 
-The API
+### The API
+The aim of the project is to provide helper functions so you've to write minimal code with the likes of the following
+```python
+from pai.data import IMAGE_FEEDER
+from pai.settings import CONFIG
+from pai.models import MODEL
+from pai.trainer import TRAINER
+
+# Keras Or PyTorch Imports To Create Your Model.
+
+config = CONFIG('./config.json')
+
+class UNET(MODEL):
+	def compose_model(self):
+		# model code
+		return model
+
+
+model = UNET(config)
+
+feeder = IMAGE_FEEDER(config)
+
+trainer = TRAINER(config, model, feeder)
+
+model = trainer.train()
+
+trainer.evaluate()
+
+pred = model.predict(new_image
+```
