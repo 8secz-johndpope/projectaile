@@ -6,7 +6,6 @@ class LOADER:
 		self.config = config
 		self.feeder = feeder
 		self.mode = mode
-
 		if self.mode == 'train':
 			self.batch_size = self.config.HYPERPARAMETERS['TRAINING_BATCH_SIZE']
 		elif self.mode == 'valid':
@@ -26,7 +25,8 @@ class LOADER:
 
 		elif interface == 'directory':
 			# Further splitting if self.config.dataset.interface_directories is true
-			dset = os.listdir(interface_path)
+
+
 		elif interface == 'txt':
 			with open(interface_path, 'r') as f:
 				dset = f.read()
@@ -34,8 +34,8 @@ class LOADER:
 				delimiter = self.config.DATASET['DELIMITER']
 				x_idx = self.config.DATASET['FEATURE_COLS']
 				y_idx = self.config.DATASET['TARGET_COLS']
-				self.features = [np.array(i.split(delimiter))[*x_idx] for i in dset]
-				self.labels = [np.array(i.split(delimiter))[*y_idx] for i in dset]
+				self.features = [np.array(i.split(delimiter))[x_idx] for i in dset]
+				self.labels = [np.array(i.split(delimiter))[y_idx] for i in dset]
 
 	def shuffle(self):
 		assert len(self.features) == len(self.labels)

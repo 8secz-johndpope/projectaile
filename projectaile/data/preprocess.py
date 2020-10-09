@@ -1,6 +1,5 @@
 # Different Preprocessing Steps.
 
-
 # Images
 
 def resize():

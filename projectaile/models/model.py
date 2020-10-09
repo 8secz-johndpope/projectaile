@@ -1,6 +1,5 @@
 from ..utils.trainer import TRAINER
 
-
 class BASE():
 	def __init__(self, config, model_name):
 		self.config = config

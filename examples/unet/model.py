@@ -1,19 +1,26 @@
-from projectaile import MODEL, CONFIG, TRAINER
-from .feeder import UNET_FEEDER
+from pai.data import IMAGE_FEEDER
+from pai.settings import CONFIG
+from pai.models import MODEL
+from pai.trainer import TRAINER
+
+# Keras Or PyTorch Imports To Create Your Model.
+
+config = CONFIG('./config.json')
 
 class UNET(MODEL):
-	def __init__(self, config):
-		model_name = 'unet'
-		super(MODEL, self).__init__(config, model_name)
-
 	def compose_model(self):
 		# model code
-		return
+		return model
 
 
-if __name__ == '__main__':
-	config = CONFIG('./config.json')
-	model = UNET(config)
-	loader = LOADER(config, UNET_FEEDER)
-	trainer = TRAINER(config, model, loader)
-	trainer.train()
+model = UNET(config)
+
+feeder = IMAGE_FEEDER(config)
+
+trainer = TRAINER(config, model, feeder)
+
+model = trainer.train()
+
+trainer.evaluate()
+
+pred = model.predict(new_image)

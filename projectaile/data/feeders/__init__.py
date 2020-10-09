@@ -1,0 +1,1 @@
+from .image_feeder import IMAGE_FEEDER
