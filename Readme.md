@@ -52,7 +52,7 @@ It basically defines the project and model and data configurations.
 
 Here's a sample config.json
 
-```{json}
+```json
 {
 	"MODEL": {
 		"MODEL_NAME": "voice_changer",
@@ -179,7 +179,7 @@ Used by the LOADER and the FEEDER classes to read and create batches of the data
 	```
 
 	1.1.1.2 Don't Split Data
-	```{json}
+	```json
 		"DATASET":{
 			"SPLIT_DATA" : false,
 			"DATA_TYPE" : "image",
@@ -225,7 +225,7 @@ Used by the LOADER and the FEEDER classes to read and create batches of the data
 	```
 	###### 1.1.2 Using a csv file
 	1.1.2.1 Split Data
-	```{json}
+	```json
 		"DATASET":{
 			"SPLIT_DATA" : true,
 			"TEST_SPLIT_SIZE" : 0.1,
@@ -243,7 +243,7 @@ Used by the LOADER and the FEEDER classes to read and create batches of the data
 	```
 
 	1.1.2.2 Don't split the data
-	```{json}
+	```json
 		"DATASET":{
 			"SPLIT_DATA" : false,
 			"DATA_TYPE":"image",
@@ -267,7 +267,7 @@ Used by the LOADER and the FEEDER classes to read and create batches of the data
 
 	##### 1.2 Object detection
 	###### 1.2.1 COCO format
-	```{json}
+	```json
 		"DATASET":{
 			"SPLIT_DATA" : true,
 			"TEST_SPLIT_SIZE" : 0.1,
@@ -290,7 +290,7 @@ Used by the LOADER and the FEEDER classes to read and create batches of the data
 	##### 2.1 Source separation
 	###### 2.1.1 Directories
 	2.1.1.1 Split Data
-	```{json}
+	```json
 		"DATASET":{
 			"SPLIT_DATA" : true,
 			"TEST_SPLIT_SIZE" : 0.1,
