@@ -1,4 +1,4 @@
-<img src='src/logo.png' alt='logo' />
+<img src='src/projectaile.png' alt='logo' />
 A common api architecture and design language for all machine learning related projects with library support in Python ( with tensorflow(keras) and pytorch framework support ) and C++.
 The end goal for the project is to create a design framework for machine learning projects to provide uniformity in the vastly non-uniform world of machine learning research and development projects.
 The ProjectAIle provides a common project structure, useful functionality through a standard api and a guideline for taking any product from research to production.
