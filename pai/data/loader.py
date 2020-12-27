@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import sklearn
 
 class LOADER:
 	def __init__(self, config, feeder=None, mode='train'):
@@ -25,7 +26,7 @@ class LOADER:
 
 		elif interface == 'directory':
 			# Further splitting if self.config.dataset.interface_directories is true
-
+			return
 
 		elif interface == 'txt':
 			with open(interface_path, 'r') as f:
@@ -37,9 +38,11 @@ class LOADER:
 				self.features = [np.array(i.split(delimiter))[x_idx] for i in dset]
 				self.labels = [np.array(i.split(delimiter))[y_idx] for i in dset]
 
+		self.indices = np.arange(len(self.features))
+
 	def shuffle(self):
 		assert len(self.features) == len(self.labels)
-		p = numpy.random.permutation(len(self.features))
+		p = np.random.permutation(len(self.features))
 		self.features = self.features[p]
 		self.labels = self.labels[p]
 
@@ -67,7 +70,7 @@ class LOADER:
 		else:
 			raise Exception('Not Supported Interface')
 
-		train_x, valid_x, train_y, valid_y = train_test_split(
+		train_x, valid_x, train_y, valid_y = sklearn.model_selection.train_test_split(
 			self.features,
 			self.labels,
 			test_size=self.config.DATASET['TEST_SPLIT_SIZE'],
