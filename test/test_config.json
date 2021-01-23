@@ -1,0 +1,108 @@
+{
+    "MODEL": {
+        "MODEL_NAME": "leafy",
+        "MODEL_DESCRIPTION": "Classify Leaf Diseases",
+        "MODEL_TYPE": "convolutional",
+        "PROBLEM_TYPE": "classification",
+        "MODEL_PARAMS": {
+            "INPUT_SHAPE": [
+                600,
+                800,
+                3
+            ],
+            "METRICS": [
+                "accuracy"
+            ],
+            "OPTIMIZER": {
+                "type": "adam",
+                "params": {
+                    "beta1": 0.9,
+                    "beta2": 0.99
+                }
+            }
+        },
+        "CALLBACKS": [{
+                "type": "early_stopping",
+                "params": {
+                    "epochs": 2,
+                    "change_threshold": 0.01
+                }
+            },
+            {
+                "type": "tensorboard",
+                "params": {
+
+                }
+            },
+            {
+                "type": "checkpoint",
+                "params": {
+
+                }
+            }
+        ]
+    },
+    "DATA": {
+        "SPLIT_DATA": true,
+        "DATA_TYPE": "image",
+        "VALID_SPLIT_SIZE": 0.1,
+        "DATASET": {
+            "INTERFACE_TYPE": "csv",
+            "INTERFACE_FILE": "train.csv",
+            "DATA_PATH": "./",
+            "DIRECTORIES": [
+                "./"
+            ],
+            "FEATURES": "image_id",
+            "TARGETS": "label"
+        },
+        "PREPROCESSES": [{
+                "type": "resize",
+                "params": {
+                    "target_size": [
+                        600,
+                        800
+                    ]
+                }
+            },
+            {
+                "type": "color_normalization",
+                "params": {
+                    "calc_means": true
+                }
+            }
+        ],
+        "AUGMENTATIONS": [{
+                "type": "rotate",
+                "params": {
+                    "min_angle": 20,
+                    "max_angle": 45,
+                    "prob": 0.4
+                }
+            },
+            {
+                "type": "translate",
+                "params": {
+                    "x_shift": 100,
+                    "y_shift": 20
+                }
+            }
+        ]
+    },
+    "HYPERPARAMETERS": {
+        "TRAINING_BATCH_SIZE": 8,
+        "NUM_EPOCHS": 100,
+        "STEPS_PER_EPOCH": 0,
+        "LEARNING_RATE": 1e-3,
+        "MONITOR_METRIC": "val_loss",
+        "SAVE_WEIGHTS": true,
+        "EARLY_STOP_EPOCHS": 2,
+        "DROPOUT_RATIO": 0.3,
+        "LR_DECAY_ALPHA": 0.4
+    },
+    "CONFIG_INFO": {
+        "LOG_DIR": "logs",
+        "MODEL_IMAGE_PATH": "model_images",
+        "CHECKPOINTS_PATH": "checkpoints"
+    }
+}

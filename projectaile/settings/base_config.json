@@ -9,16 +9,13 @@
         }
     },
     "DATASET": {
-        "INTERFACE_TYPE": "directory",
-        "INTERFACE_PATH": "",
-        "DATA_PATH": "_path_to_dset_",
-        "DIRECTORIES": "",
-        "FEATURE_COLS": [],
-        "TARGET_COLS": [],
-        "TRAIN_TEST_SPLIT": true,
-        "TEST_SPLIT_SIZE": 0.1,
-        "INPUT_TYPE": "image",
-        "TARGET_PATH": ""
+        "SPLIT": false,
+        "DATA_TYPE": "",
+        "DATA": {
+            "INTERFACE_TYPE": "",
+            "FEATURES": "",
+            "TARGETS": "",
+        }
     },
     "HYPERPARAMETERS": {
         "TRAINING_BATCH_SIZE": 8,

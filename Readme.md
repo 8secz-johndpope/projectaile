@@ -281,7 +281,8 @@ Used by the LOADER and the FEEDER classes to read and create batches of the data
 			}
 		}
 	```
-	1.3 Segmentation
+	##### 1.3 Segmentation
+	###### 1.3.1 
 	1.4 Heatmap or density estimation
 	1.5 Generation
 	1.6 Inpainting
