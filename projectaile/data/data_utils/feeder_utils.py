@@ -1,83 +1,49 @@
-import os
 import numpy as np
-import pandas as pd
+
 
 '''
-    Utility Functions For Data Feeder And Loaders
+    utility functions for the feeder
 '''
 
-def get_features_labels_from_dirs(root, dirs, features, targets):
-    if dirs == '*':
-        dirs = next(os.walk(root_path))[1]
-    elif dirs == '':
-        dirs = []
-            
-    if targets == '__dirname__':
-        targets = dirs
-            
-    # Targets can also be file_name_regex like : *_mask.jpg|*_mask.png or path to directory like /masks or a hybrid like /masks/*_mask.jpg|*_mask.png, every file in that dir will be mapped to the feature file using feature file name
-    elif '/' in targets:
-        # target is a directory and filenames need to be mapped.
-        # Iter the train files and check for the equivalent file in the target_dir
-        pass
-    # Targets can also be elements like the bounding box arrays or the mask encodings like in the HuBMAP competition.
-    else:
-        pass
-            
-    return
-
-
-def get_dset_info_for_dirs():
-    if self.split_data:
-        root_path = self.config.DATA.DATASET.DATA_PATH
-        dirs = self.config.DATA.DATASET.DIRECTORIES
-                        
-        features, targets = get_features_labels_from_dirs(root_path, dirs, self.feature_names, self.target_names)
-        indices = np.arange(0, len(features))
-        self.split_dset(indices)
-                        
-    else:
-        # Train Data
-        train_root_path = self.config.DATA.DATASET.TRAIN_DATA.DATA_PATH
-        train_dirs = self.config.DATA.DATASET.TRAIN_DATA.DIRECTORIES
-
-        # Valid Data
-        valid_root_path = self.config.DATA.DATASET.VALID_DATA.DATA_PATH
-        valid_dirs = self.config.DATA.DATASET.VALID_DATA.DIRECTORIES
-                            
-        train_features, train_targets = get_features_labels_from_dirs(train_root_path, train_dirs, self.feature_names, self.target_names)
-        valid_features, valid_targets = get_features_labels_from_dirs(valid_root_path, valid_dirs, self.feature_names, self.target_names)
-                        
-        self.train_indices = np.arange(0, len(self.train_features))
-        self.valid_indices = np.arange(0, len(self.valid_features))
-
-
-def split_dset(indices, split_size):
-    np.random.shuffle(indices)
+'''
+    split_dset : Split the given data in train and validation sets
+    
+    indices : The indices of the data
+    split_size : The ratio of the validation set
+    shuffle : Whether to randomly shuffle the data before splitting
+    
+    returns : 
+    train_indices : Indices of the training set
+    valid_indices : Indices of the validation set
+'''
+def split_dset(indices, split_size, shuffle=True):
+    if shuffle:
+        np.random.shuffle(indices)
+        
     split_index = len(indices)-int(len(indices)*split_size)
     train_indices = indices[:split_index]
     valid_indices = indices[split_index:]
     
-    return train_indices, valid_indices
+    return train_indices, valid_indices    
+
+
+'''
+    k_fold : Perform K-Fold Data Splitting
     
-
-
+    k : number of folds
+    shuffle : Whether to shuffle data before splitting
+    repeat : How many times to repeat k_fold operation
 '''
-    Extract Dataset Information, i.e., features, targets and load_paths from csv files.
-'''
-def get_features_labels_from_csv(config):
-    if self.split_data:
-        fl = self.config.DATA.DATASET.INTERFACE_FILE
-        root_path = self.config.DATA.DATASET.DATA_PATH
-        df = pd.read_csv(root_path+fl)
-        indices = np.arange(0, len(df))
-        split_dset(indices)
-    # If train and valid datasets are provided separately.
-    else:
-        train_fl = self.config.DATA.DATASET.TRAIN_DATA.INTERFACE_FILE
-        train_root_path = self.config.DATA.DATASET.TRAIN_DATA.DATA_PATH
-        valid_fl = self.config.DATA.DATASET.VALID_DATA.INTERFACE_FILE
-        valid_root_path = self.config.DATA.DATASET.VALID_DATA.DATA_PATH
-                        
-        self.train_indices = np.arange(0, len(pd.read_csv(train_root_path+train_fl)))
-        self.valid_indices = np.arange(0, len(pd.read_csv(valid_root_path+valid_fl)))
+def k_fold(indices, k=5, shuffle=True, repeat=1):
+    iterations = {}
+    samples_per_fold = len(indices)//k
+    
+    for i in range(repeat):
+        if shuffle:
+            np.random.shuffle(indices)
+                
+        for j in range(k):
+            print('TODO')    
+        
+        
+    return

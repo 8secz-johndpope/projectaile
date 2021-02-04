@@ -10,3 +10,6 @@ def gray_scale():
 
 def normalize():
     return
+
+def mask():
+    return

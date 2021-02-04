@@ -6,7 +6,7 @@ import pandas as pd
 from .loaders import loaders
 from .preprocesses import PREPROCESSES
 from .augmentations import AUGMENTATIONS
-from .data_utils.feeder_utils import *
+from .data_utils import extractors
 
 '''
 	FEEDER : FEEDER class for getting batches from the loader
@@ -86,6 +86,9 @@ class FEEDER:
 		get_train_batch : get next training batch
 	'''
 	def get_train_batch(self):
+		if self.train_iterator == 0:
+			np.random.shuffle(self.train_indices)
+
 		x, y, self.train_iterator = self.get_batch(
 			self.train_iterator,
 			self.train_indices,
@@ -100,6 +103,9 @@ class FEEDER:
 		get_valid_batch : get next validation batch
 	'''
 	def get_valid_batch(self):
+		if self.valid_iterator == 0:
+			np.random.shuffle(self.valid_indices)
+
 		x, y, self.valid_iterator = self.get_batch(
 			self.valid_iterator, 
 			self.valid_indices, 
@@ -117,25 +123,13 @@ class FEEDER:
 	'''
 	# Getting indices and features and targets for the dataset.
 	def get_dset_info(self):
-		self.interface_type = self.config.DATA.DATASET.INTERFACE_TYPE
-		self.split_data = self.config.DATA.SPLIT_DATA
-		self.feature_names = self.config.DATA.DATASET.FEATURES
-		self.target_names = self.config.DATA.DATASET.TARGETS
-			
-		# If the dataset info is given as a csv file
-		if self.interface_type == 'csv':
-			# If dataset is to be split in train and valid sets.
-			train_features, valid_features, train_targets, valid_targets = get_features_labels_from_csv()
-					
-		elif self.interface_type == 'dir':
-			train_features, valid_features, train_targets, valid_targets = get_features_labels_from_dirs()
-				
-		elif self.interface_type == 'text':
-			print('text')
-		elif self.interface_type == 'json':
-			print('json')
-		elif self.interface_type == 'xml':
-			print('xml')
+		interface_type = self.config.DATA.DATASET.INTERFACE_TYPE
+		
+		if interface_type in extractors.keys():
+			train_features, valid_features, train_targets, valid_targets = extractors[interface_type](self.config)
+		else:
+			print(f'Could not find a suitable extractor for the interface type : {interface_type}')
+			exit(0)
 
 		self.train_features = train_features
 		self.train_targets = train_targets
