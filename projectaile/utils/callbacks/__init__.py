@@ -1,2 +1,2 @@
-from .trainer import TRAINER
+from .callback import CALLBACK
 from .callbacks import CALLBACKS

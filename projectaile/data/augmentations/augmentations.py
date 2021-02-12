@@ -1,9 +1,14 @@
 from ..pipeline import PIPELINE
+from ..callable import CALLABLE
 
-class AUGMENTATIONS(PIPELINE):
-    def __init__(self, config):
-        super(AUGMENTATIONS, self).__init__('augmentations', config)
+
+class AUGMENTATION(CALLABLE):
+    def __init__(self, params):
+        super(AUGMENTATION, self).__init__(params)
         
-    def apply(self):
-        # apply according to probability
+    def __call__(self, x, y):
         return
+
+class AUGMENTOR(PIPELINE):
+    def __init__(self, config):
+        super(AUGMENTOR, self).__init__(config)

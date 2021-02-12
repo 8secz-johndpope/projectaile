@@ -4,9 +4,9 @@ import numpy as np
 import pandas as pd
 
 from .loaders import loaders
-from .preprocesses import PREPROCESSES
-from .augmentations import AUGMENTATIONS
-from .data_utils import extractors
+from .preprocesses import PREPROCESSOR
+from .augmentations import AUGMENTOR
+from ..utile.data_utils import extractors
 
 '''
 	FEEDER : FEEDER class for getting batches from the loader
@@ -23,8 +23,8 @@ class FEEDER:
 			loader = self.get_loader(self.config.DATA.DATA_TYPE)
 		
 		self.loader = loader(self.config)
-		self.preprocessor = PREPROCESSES(self.config.DATA.PREPROCESSES)
-		self.augmentor = AUGMENTATIONS(self.config.DATA.AUGMENTATIONS)
+		self.preprocessor = PREPROCESSOR(self.config.DATA.PREPROCESSES)
+		self.augmentor = AUGMENTOR(self.config.DATA.AUGMENTATIONS)
 		self.train_iterator = 0
 		self.valid_iterator = 0
 
@@ -116,7 +116,6 @@ class FEEDER:
 
 		return x, y
 		
-
 	'''
 	get_data_info : extracts base information about the data for generating batches and using
 					it for getting batches of data from the feeders.

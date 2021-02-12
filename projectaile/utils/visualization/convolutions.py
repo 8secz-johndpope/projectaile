@@ -26,5 +26,5 @@ def visualize_activations(model, image):
         plt.imshow(display_grid, aspect='auto')
         
 
-def visualize_gradients():
+def saliency_maps():
     return
