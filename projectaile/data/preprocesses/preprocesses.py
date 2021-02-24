@@ -1,13 +1,9 @@
-from ..pipeline import PIPELINE
-from ..callable import CALLABLE
+from projectaile.utils import PIPELINE, CALLABLE
 
 
 class PREPROCESS(CALLABLE):
-    def __init__(self, params):
-        super(PREPROCESS, self).__init__(params)
-        
-    def __call__(self):
-        pass
+    def __init__(self, apply_on_targets, **params):
+        super(PREPROCESS, self).__init__(apply_on_targets, **params)
 
 
 class PREPROCESSOR(PIPELINE):

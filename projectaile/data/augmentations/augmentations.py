@@ -1,5 +1,4 @@
-from ..pipeline import PIPELINE
-from ..callable import CALLABLE
+from projectaile.utils import PIPELINE, CALLABLE
 
 
 class AUGMENTATION(CALLABLE):

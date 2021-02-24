@@ -1,4 +1,4 @@
-class Layer():
+class LAYER():
 	def __init__(self):
 		return
 

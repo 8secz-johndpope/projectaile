@@ -57,21 +57,13 @@
             "TARGETS": "label"
         },
         "PREPROCESSES": [{
-                "type": "resize",
-                "params": {
-                    "target_size": [
-                        600,
-                        800
-                    ]
-                }
-            },
-            {
-                "type": "color_normalization",
-                "params": {
-                    "calc_means": true
-                }
+            "type": "resize",
+            "params": {
+                "width": 400,
+                "height": 200,
+                "apply_on_targets": false
             }
-        ],
+        }],
         "AUGMENTATIONS": [{
                 "type": "rotate",
                 "params": {

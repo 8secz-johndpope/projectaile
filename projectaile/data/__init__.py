@@ -1,4 +1,4 @@
 from .feeder import FEEDER
 from .loaders import LOADER
-from .augmentations import AUGMENTATIONS
-from .preprocesses import PREPROCESSES
+from .augmentations import AUGMENTOR
+from .preprocesses import PREPROCESSOR

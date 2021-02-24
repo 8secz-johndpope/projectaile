@@ -6,7 +6,7 @@ import pandas as pd
 from .loaders import loaders
 from .preprocesses import PREPROCESSOR
 from .augmentations import AUGMENTOR
-from ..utile.data_utils import extractors
+from ..utils.data_utils import extractors
 
 '''
 	FEEDER : FEEDER class for getting batches from the loader
